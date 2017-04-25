@@ -1,0 +1,19 @@
+extends layout
+block content
+    div
+        h1= message
+
+        if(error)
+            p.error-message  #{error}
+        else
+            each cat in categories
+                div(class="category-container")
+                    span (#{cat.notes ? cat.notes.length : 0})
+                    a(href="#") #{cat.name}
+
+        div(class="form-default-div")
+            form(action="/setCategory", method="post")
+                label(for="newCategory") New Category
+                input(type="text", id="newCategory", name="newCategory")
+                input(type="submit", value="Create New Category")
+
